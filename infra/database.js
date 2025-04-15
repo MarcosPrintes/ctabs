@@ -2,8 +2,6 @@ import pg from "pg";
 
 const { Client } = pg;
 
-// const DB_URL = `postgresql://${POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`;
-
 async function query(queryObject) {
   const client = new Client(
     `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`,
