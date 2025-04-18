@@ -13,6 +13,7 @@ test("Should return 200", async () => {
     database: {
       postgres_version: "16.8",
       max_connections: 100,
+      current_connections: 1,
     },
   });
 });
