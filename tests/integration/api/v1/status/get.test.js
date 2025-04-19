@@ -8,7 +8,7 @@ test("Should return 200", async () => {
   const parseUpdatedAt = new Date(responseBody.updated_at).toISOString();
 
   expect(responseBody).toEqual({
-    status: "database is running",
+    status: "RUNNING",
     updated_at: parseUpdatedAt,
     database: {
       postgres_version: "16.8",
