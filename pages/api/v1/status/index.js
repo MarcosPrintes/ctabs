@@ -18,11 +18,12 @@ async function status(request, response) {
 
   const updatedAt = new Date().toISOString();
 
-  const currentConnections = await database.query({
-    text: "SELECT count(*)::int FROM pg_stat_activity WHERE datname=$1;",
-    values: [dbName],
+  const databaseOpendConections = await database.query({
+    text: "SELECT count(*)::int FROM pg_stat_activity WHERE datname=$1 AND state=$2;",
+    values: [dbName, "active"],
   });
-  const currentConnectionsCount = currentConnections.rows[0].count;
+
+  const databaseOpendConectionsCount = databaseOpendConections.rows[0].count;
 
   response.status(200).send({
     status: "RUNNING",
@@ -30,7 +31,7 @@ async function status(request, response) {
     database: {
       postgres_version: postgresVersion,
       max_connections: maxConnections,
-      current_connections: currentConnectionsCount,
+      current_connections: databaseOpendConectionsCount,
     },
   });
 }
